@@ -46,18 +46,19 @@ public class ProductControllerTests {
     void should_return_a_product_by_id() throws Exception{
 
         String url = baseUrl + "/id/";
-        Product product = new Product( "1004", Animal.CAT,Category.FOOD,Size.MEDIUM,Age.ADULT,"Churu Snack Tuna Whit Scallop Paquete x 10 Unds");
+        String id = "1004";
+        Product product = new Product( id, Animal.CAT,Category.FOOD,Size.MEDIUM,Age.ADULT,"Churu Snack Tuna Whit Scallop Paquete x 10 Unds");
         given(getProductManager.getById(anyString())).willReturn(product);
 
         RequestBuilder request = get(url)
             .contentType(MediaType.APPLICATION_JSON)
-            .param("id","1004");
+            .param("id",id);
 
         mockMvc.perform(request)
             .andExpect(status().isOk())
             .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
             .andExpectAll(
-                    jsonPath("$.id").value("1004"),
+                    jsonPath("$.id").value(id),
                     jsonPath("$.animal").value("CAT")
             );
     }
