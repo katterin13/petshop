@@ -2,6 +2,8 @@ package com.workshop.petshop.core.entity;
 
 import java.util.Objects;
 
+import com.workshop.petshop.dataprovider.model.MInventary;
+
 public class Inventary {
 
     private String id;
@@ -117,4 +119,13 @@ public class Inventary {
             "}";
     }
     
+    public static Inventary convetMInventaryToInventary(MInventary model){
+        return new Inventary()
+        .amount(model.getAmount())
+        .available(model.getAvailable())
+        .id(model.getId())
+        .price(model.getPrice())
+        .product(Product.convetMProductToProduct(model.getProduct()));
+    }
+
 }
