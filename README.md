@@ -1,3 +1,10 @@
+# Create SSH - Key
+
+```
+cd .ssh
+ssh-keygen -t ed25519 -C "test@gmail.com"
+```
+then enter the file name
 
 # PetShop
 
